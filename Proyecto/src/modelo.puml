@@ -1,0 +1,80 @@
+@startuml
+
+class Usuario {
+  - idUsuario : int
+  - nombre : String
+  - apellido : String
+  - email : String
+  - telefono : int
+  - direccion : String
+  - contrasena : String
+}
+
+class Producto {
+  - idProducto : int
+  - nombre : String
+  - descripcion : String
+  - precio : float
+  - categoria : String
+  - stock : int
+}
+
+class Categoria {
+  - idCategoria : int
+  - nombre : String
+  - descripcion : String
+}
+
+class Carrito {
+  - idCarrito : int
+  - subtotal : double
+  - items : ArrayList<ItemCarrito>
+}
+
+class Pedido {
+  - idPedido : int
+  - metodoPago : String
+  - metodoEntrega : String
+  - total : double
+  - fecha : String
+  - estado : String
+  - productos : ArrayList<ItemCarrito>
+}
+
+class Pago {
+  - idPago : int
+  - metodo : String
+  - monto : double
+  - estado : String
+  - fecha : String
+}
+
+class Entrega {
+  - idEntrega : int
+  - direccion : String
+  - tipoEntrega : String
+  - costo : double
+  - estado : String
+}
+
+class ItemCarrito {
+  - idItem : int
+  - cantidad : int
+  - precioUnitario : double
+}
+
+' ================= RELACIONES =================
+
+Usuario "1" -- "1" Carrito : tiene >
+Usuario "1" -- "many" Pedido : realiza >
+Pedido "1" -- "1" Pago : genera >
+Pedido "1" -- "1" Entrega : incluye >
+
+Carrito "1" -- "many" ItemCarrito : contiene >
+Pedido "1" -- "many" ItemCarrito : incluye >
+
+ItemCarrito "many" -- "1" Producto : referencia >
+
+Producto "many" -- "1" Categoria : pertenece a >
+
+@enduml
