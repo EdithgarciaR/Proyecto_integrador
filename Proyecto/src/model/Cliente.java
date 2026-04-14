@@ -1,0 +1,29 @@
+package model;
+
+public class Cliente extends Usuario {
+
+    private  String tipoCliente;
+
+    //constructor solo con tipocliente
+    public Cliente (String tipoCliente){
+        this.tipoCliente = tipoCliente;}
+
+    public Cliente(int IdUsuario, String Nombre, String Apellido, String Email,
+    int Telefono, String Direccion, String Contrasena){
+    super(IdUsuario, Nombre,Apellido,Email, Telefono,Direccion,Contrasena);}
+
+        //metodo
+    public void comprar(){
+        System.out.println("El cliente va a comprar");
+    }
+
+    public String getTipoCliente(){
+        return tipoCliente;}
+        
+    // polimorfismo
+     @Override
+    public void mostrarRol() {
+    System.out.println("Soy cliente");}
+        
+}
+
