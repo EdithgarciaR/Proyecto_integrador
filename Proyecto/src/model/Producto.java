@@ -4,7 +4,7 @@ public class Producto {
 private  int IdProducto;
 private  String Nombre;
 private String  Descripcion;
-private float Precio;
+private double Precio;
 private String Categoria; 
 private  int Stock; 
 
@@ -12,7 +12,7 @@ private  int Stock;
 public Producto (){}
 
 public Producto (int IdProducto, String Nombre, String Descripcion, 
-float Precio, String Categoria, int Stock){
+double Precio, String Categoria, int Stock){
 this.IdProducto = IdProducto;
 this.Nombre = Nombre;
 this.Descripcion = Descripcion;
@@ -43,8 +43,8 @@ this.Stock = Stock;
      else {System.out.println("Error: la descripcion no puede estar vacia");}}
 
     // precio
-    public float getPrecio(){ return Precio;}
-    public void setPrecio(float Precio){
+    public double getPrecio(){ return Precio;}
+    public void setPrecio(double Precio){
     if(Precio > 0){
     this.Precio = Precio;} 
     else {System.out.println("Error: el precio debe ser mayor a 0");}}
@@ -62,4 +62,5 @@ this.Stock = Stock;
     if(Stock >= 0){
     this.Stock = Stock;} 
     else {System.out.println("Error: el stock no puede ser negativo");}}
-}
+    }
+

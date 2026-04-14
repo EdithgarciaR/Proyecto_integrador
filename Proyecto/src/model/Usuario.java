@@ -1,6 +1,6 @@
 package model;
 
-public class Usuario{
+public abstract class Usuario {
     private int IdUsuario; 
     private String Nombre;
     private String Apellido;
@@ -68,7 +68,11 @@ int Telefono, String Direccion, String Contrasena)
     //contraseña
     public String getContrasena(){ return Contrasena; }
     public void setContrasena(String Contrasena){
-    if(Contrasena != null && Contrasena.length() >= 8 && !Contrasena.contains(" ")) {
+    if(Contrasena != null && Contrasena.length() >= 8 && !Contrasena.contains(" ")) {   
         this.Contrasena = Contrasena;} else {
         System.out.println("Error: la contraseña no puede estar vacía");}}
+
+    // para el polimorfismo
+    public abstract void mostrarRol();
 }
+

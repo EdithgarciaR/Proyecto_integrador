@@ -1,6 +1,5 @@
+package model;
 import java.util.ArrayList;
-import model.Producto;
-import model.Usuario;
 
 public class Tienda {
     private ArrayList<Usuario> listaUsuarios;
@@ -33,6 +32,9 @@ public class Tienda {
             Usuario u = listaUsuarios.get(i);
             System.out.println(u.getIdUsuario() + " - " + u.getNombre() + " " + u.getApellido() +
                                " | Email: " + u.getEmail());
+
+            // polimorfismo
+            u.mostrarRol();
         }
     }
 
