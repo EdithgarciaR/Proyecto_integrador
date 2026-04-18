@@ -4,8 +4,9 @@ public class Cliente extends Usuario {
 
     private  String tipoCliente;
 
-    //constructor solo con tipocliente
+    //constructor solito
     public Cliente (String tipoCliente){
+        super();
         this.tipoCliente = tipoCliente;}
 
     public Cliente(int IdUsuario, String Nombre, String Apellido, String Email,
@@ -23,7 +24,7 @@ public class Cliente extends Usuario {
     // polimorfismo
      @Override
     public void mostrarRol() {
-    System.out.println("Soy cliente");}
+    System.out.println("Soy cliente" +tipoCliente);}
         
 }
 

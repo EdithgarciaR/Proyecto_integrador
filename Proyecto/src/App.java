@@ -10,83 +10,110 @@ public class App {
          
         Scanner leer = new Scanner(System.in);
          Tienda miTienda = new Tienda();
-// usuario--CLIENTE
-System.out.println("Registro de cliente");
 
-System.out.println("Ingrese el ID del usuario:");
-int idUsuario = leer.nextInt();
-leer.nextLine();
+int opcionPrincipal = 1; 
+while(opcionPrincipal != 0){
+System.out.println("Bienvenido a Reposteria Yuma");
+System.out.println("Por ingrese que desea hacer"); 
+System.out.println("1. usuarios");
+System.out.println("2. productos");   
+opcionPrincipal =leer.nextInt();        
 
-System.out.println("Ingrese el nombre:");
-String nombreUsuario = leer.nextLine();
+switch (opcionPrincipal) {
+    case 1:
 
-System.out.println("Ingrese el apellido:");
-String apellidoUsuario = leer.nextLine();
+int opcionUsuario = 1;
+while(opcionUsuario !=0){
+System.out.println("Bienvenido escoge tu rol ");
+System.out.println("1. registrar cliente");
+System.out.println("2.registrar administrador");
+System.out.println("0.salirr");
+opcionUsuario = leer.nextInt();
 
-System.out.println("Ingrese el email:");
-String emailUsuario = leer.nextLine();
+switch (opcionUsuario) {
+        case 1:
+        // usuario--CLIENTE
+        System.out.println("Registro de cliente");
 
-System.out.println("Ingrese el telefono:");
-int telefonoUsuario = leer.nextInt();
-leer.nextLine();
+        System.out.println("Ingrese el ID del cliente:");
+        int idCliente = leer.nextInt();
+        leer.nextLine();
 
-System.out.println("Ingrese la direccion:");
-String direccionUsuario = leer.nextLine();
+        System.out.println("Ingrese el nombre:");
+        String nombreCliente = leer.nextLine();
 
-System.out.println("Ingrese la contraseña:");
-String contrasenaUsuario = leer.nextLine();
+        System.out.println("Ingrese el apellido:");
+        String apellidoCliente = leer.nextLine();
 
-//polimorfismo
-System.out.println("ingrese tipo de cliente");
-String tipoCliente = leer.next();
+        System.out.println("Ingrese el email:");
+        String emailCliente = leer.nextLine();
 
-Cliente cliente = new Cliente(
-        idUsuario,
-        nombreUsuario,
-        apellidoUsuario,
-        emailUsuario,
-        telefonoUsuario,
-        direccionUsuario,
-        contrasenaUsuario
-);
-miTienda.registrarUsuario(cliente);
+        System.out.println("Ingrese el telefono:");
+        int telefonoCliente = leer.nextInt();
+        leer.nextLine();
 
-// usuario--aDMINISTRADOR       
-System.out.println("Registro de administrador");
+        System.out.println("Ingrese la direccion:");
+        String direccionCliente = leer.nextLine();
 
-System.out.println("Ingrese el ID del usuario:");
-int idAdmin = leer.nextInt();
-leer.nextLine();
+        System.out.println("Ingrese la contraseña:");
+        String contrasenaCliente = leer.nextLine();
 
-System.out.println("Ingrese el nombre:");
-String nombreAdmin = leer.nextLine();
+        System.out.println("ingrese tipo de cliente");
+        String tipoCliente = leer.next();
 
-System.out.println("Ingrese el apellido:");
-String apellidoAdmin = leer.nextLine();
+        //herencia
+        Cliente cliente = new Cliente(
+                idCliente,
+                nombreCliente,
+                apellidoCliente,
+                emailCliente,
+                telefonoCliente,
+                direccionCliente,
+                contrasenaCliente
+        );
+        //polimorfismo
+        miTienda.registrarUsuario(cliente);
+break;
 
-System.out.println("Ingrese el email:");
-String emailAdmin = leer.nextLine();
+        case 2:
+        // usuario--aDMINISTRADOR       
+        System.out.println("Registro de administrador");
 
-System.out.println("Ingrese el telefono:");
-int telefonoAdmin = leer.nextInt();
-leer.nextLine();
+        System.out.println("Ingrese el ID del administrador:");
+        int idAdministrador = leer.nextInt();
+        leer.nextLine();
 
-System.out.println("Ingrese la direccion:");
-String direccionAdmin = leer.nextLine();
+        System.out.println("Ingrese el nombre:");
+        String nombreAdministrador = leer.nextLine();
 
-System.out.println("Ingrese la contraseña:");
-String contrasenaAdmino = leer.nextLine();
+        System.out.println("Ingrese el apellido:");
+        String apellidoAdministrador = leer.nextLine();
 
-Administrador admin = new Administrador(
-        idUsuario,
-        nombreUsuario,
-        apellidoUsuario,
-        emailUsuario,
-        telefonoUsuario,
-        direccionUsuario,
-        contrasenaUsuario
-);
-miTienda.registrarUsuario(admin);
+        System.out.println("Ingrese el email:");
+        String emailAdministrador = leer.nextLine();
+
+        System.out.println("Ingrese el telefono:");
+        int telefonoAdministrador = leer.nextInt();
+        leer.nextLine();
+
+        System.out.println("Ingrese la direccion:");
+        String direccionAdministrador = leer.nextLine();
+
+        System.out.println("Ingrese la contraseña:");
+        String contrasenaAdministrador = leer.nextLine();
+
+        // herencia 
+        Administrador admin = new Administrador(
+                idAdministrador,
+                nombreAdministrador,
+                apellidoAdministrador,
+                emailAdministrador,
+                telefonoAdministrador,
+                direccionAdministrador,
+                contrasenaAdministrador
+        );
+        //polimorfismo
+        miTienda.registrarUsuario(admin);
 
 
 
@@ -119,9 +146,50 @@ Producto productoTienda = new Producto(
 
 miTienda.agregarProducto(productoTienda);
 
+
+        default:
+        System.out.println("opcion invalida");
+                break;
+}
+
+
+
+}
+        break;
+    default:
+       
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+        break;
+}
+
+}
+// interfazde producto
+miTienda.guardar(productoTienda);
+miTienda.buscar(idProductoTienda);
+miTienda.eliminar(idProductoTienda);
+
+
+
+
 // Mostrar lo que se guardó
 System.out.println("usuarios:");
-miTienda.listarUsuarios(); //polimorfismo
+miTienda.listarUsuarios(); 
+
 System.out.println("productos");
 miTienda.mostrarProductos();
-    }}
+    }
+
+
