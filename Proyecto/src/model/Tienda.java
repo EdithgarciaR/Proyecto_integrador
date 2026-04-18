@@ -1,9 +1,9 @@
 package model;
 import java.util.ArrayList;
 
-public class Tienda {
-    private ArrayList<Usuario> listaUsuarios;
-    private ArrayList<Producto> listaProductos;
+public class Tienda implements Inter_Productos {
+     private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+    private ArrayList<Producto> listaProductos = new ArrayList<>();
 
     public Tienda() {
         listaUsuarios = new ArrayList<>();
@@ -24,7 +24,7 @@ public class Tienda {
 
     public void listarUsuarios() {
         System.out.println("\nLista de usuarios:");
-        if (listaUsuarios.size() == 0) {
+        if (listaUsuarios.isEmpty()) {
             System.out.println("No hay usuarios registrados.");
             return;
         }
@@ -33,7 +33,7 @@ public class Tienda {
             System.out.println(u.getIdUsuario() + " - " + u.getNombre() + " " + u.getApellido() +
                                " | Email: " + u.getEmail());
 
-            // polimorfismo
+            // polimorfismo de usuario
             u.mostrarRol();
         }
     }
@@ -64,7 +64,7 @@ public class Tienda {
 
     public void mostrarProductos() {
         System.out.println("\nInventario de productos:");
-        if (listaProductos.size() == 0) {
+        if (listaProductos.isEmpty()) {
             System.out.println("No hay productos registrados.");
             return;
         }
@@ -91,6 +91,26 @@ public class Tienda {
             System.out.println("Producto con ID " + id + " eliminado.");
         } else {
             System.out.println("No se encontró producto con ID " + id);
+        }}
+
+        // overide de mi interfca
+        @Override
+        public void  guardar(Producto producto){
+            agregarProducto(producto);
         }
-    }
-}
+
+        @Override
+        public Producto buscar(int id){
+        for (Producto p : listaProductos){
+            if(p.getIdProducto() == id) return p;}
+                System.out.println("no se encontro ningun producto");
+                return null;
+            }
+        
+        @Override
+        public void eliminar(int id) {
+            eliminarProducto(id);}
+
+        }
+
+    

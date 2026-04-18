@@ -10,19 +10,25 @@ public abstract class Usuario {
     private String Contrasena;
 
 
-public  Usuario (){}
+    public  Usuario (){}
 
-public Usuario (int IdUsuario, String Nombre, String Apellido, String Email,
-int Telefono, String Direccion, String Contrasena)
-{
- this. IdUsuario = IdUsuario;
- this. Nombre = Nombre;
- this. Apellido = Apellido;
- this. Email = Email;
- this.  Telefono = Telefono;
- this. Direccion = Direccion;
- this. Contrasena = Contrasena;
-}
+    public Usuario (int IdUsuario, String Nombre, String Apellido, String Email,
+    int Telefono, String Direccion, String Contrasena)
+    {
+    this. IdUsuario = IdUsuario;
+    this. Nombre = Nombre;
+    this. Apellido = Apellido;
+    this. Email = Email;
+    this.  Telefono = Telefono;
+    this. Direccion = Direccion;
+    this. Contrasena = Contrasena;
+    }
+
+
+  // para el polimorfismo y mostrar el abstract
+    public abstract void mostrarRol();
+    
+
     //idusuario
     public int getIdUsuario() { return IdUsuario; }
     public void setIdUsuario(int IdUsuario) {
@@ -72,7 +78,6 @@ int Telefono, String Direccion, String Contrasena)
         this.Contrasena = Contrasena;} else {
         System.out.println("Error: la contraseña no puede estar vacía");}}
 
-    // para el polimorfismo
-    public abstract void mostrarRol();
+   
 }
 

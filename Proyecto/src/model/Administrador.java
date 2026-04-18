@@ -5,6 +5,7 @@ public class Administrador extends Usuario {
     private String rol;
 
     public Administrador(String rol){
+       super();
         this.rol = rol ;
     }
 
