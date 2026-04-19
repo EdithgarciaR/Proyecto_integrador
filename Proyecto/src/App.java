@@ -1,8 +1,8 @@
 import java.util.Scanner;
 import model.Administrador;
 import model.Cliente;
-import model.Producto;
 import model.Tienda;
+import model.Usuario;
 
 
 public class App {
@@ -12,11 +12,14 @@ public class App {
          Tienda miTienda = new Tienda();
 
 int opcionPrincipal = 1; 
+
 while(opcionPrincipal != 0){
 System.out.println("Bienvenido a Reposteria Yuma");
 System.out.println("Por ingrese que desea hacer"); 
 System.out.println("1. usuarios");
 System.out.println("2. productos");   
+System.out.println("0. volver");
+
 opcionPrincipal =leer.nextInt();        
 
 switch (opcionPrincipal) {
@@ -24,14 +27,24 @@ switch (opcionPrincipal) {
 
 int opcionUsuario = 1;
 while(opcionUsuario !=0){
-System.out.println("Bienvenido escoge tu rol ");
-System.out.println("1. registrar cliente");
-System.out.println("2.registrar administrador");
-System.out.println("0.salirr");
+System.out.println("Bienvenido escoge que deseas hacer ");
+System.out.println("1. registrar usuario ");
+System.out.println("2.mostrar usuario");
+System.out.println("3. actualizar usuario");
+System.out.println("4. eliminar usuario");
+System.out.println("0. volver ");
 opcionUsuario = leer.nextInt();
 
 switch (opcionUsuario) {
         case 1:
+        System.out.println("escoge una opcion");
+        System.out.println("1.cliente");
+        System.out.println("2.administrador");
+        int tipoUsuario = leer.nextInt();
+        leer.nextLine();
+        switch (tipoUsuario) {
+            case 1:
+        
         // usuario--CLIENTE
         System.out.println("Registro de cliente");
 
@@ -58,8 +71,8 @@ switch (opcionUsuario) {
         System.out.println("Ingrese la contraseña:");
         String contrasenaCliente = leer.nextLine();
 
-        System.out.println("ingrese tipo de cliente");
-        String tipoCliente = leer.next();
+        System.out.println("Ingrese el tipo de cliente (vip / regular):");
+        String tipoCliente = leer.nextLine();
 
         //herencia
         Cliente cliente = new Cliente(
@@ -69,13 +82,15 @@ switch (opcionUsuario) {
                 emailCliente,
                 telefonoCliente,
                 direccionCliente,
-                contrasenaCliente
-        );
+                contrasenaCliente,
+                tipoCliente   );
+                
         //polimorfismo
         miTienda.registrarUsuario(cliente);
-break;
-
+                
+                break;
         case 2:
+        
         // usuario--aDMINISTRADOR       
         System.out.println("Registro de administrador");
 
@@ -114,82 +129,71 @@ break;
         );
         //polimorfismo
         miTienda.registrarUsuario(admin);
+        break;
 
-
-
-// productos
-
-System.out.println("\nIngrese el ID del producto:");
-int idProductoTienda = leer.nextInt();
-leer.nextLine();
-
-System.out.println("Ingrese el nombre del producto:");
-String nombreProductoTienda = leer.nextLine();
-
-System.out.println("Ingrese la descripcion:");
-String descripcionProductoTienda = leer.nextLine();
-
-System.out.println("Ingrese el precio:");
-double precioProductoTienda = leer.nextDouble();
-
-System.out.println("Ingrese la categoria:");
-leer.nextLine();
-String categoriaProductoTienda = leer.nextLine();
-
-System.out.println("Ingrese el stock:");
-int stockProductoTienda = leer.nextInt();
-
-Producto productoTienda = new Producto(
-        idProductoTienda,nombreProductoTienda,descripcionProductoTienda,precioProductoTienda,
-        categoriaProductoTienda, stockProductoTienda
-);
-
-miTienda.agregarProducto(productoTienda);
-
-
-        default:
-        System.out.println("opcion invalida");
+            default:
+        System.out.println("Tipo de usuario no válido");
+            break;}
                 break;
-}
+                // case del menu segundario
+        case 2: 
+        miTienda.listarUsuarios();
+                 break;
+
+        case 3:
+        System.out.println("ingrese el id usuario ");
+        int idBuscar = leer.nextInt();
+        leer.nextLine();
+
+        Usuario usuarioEncontrado = miTienda.buscarUsuarioPorId(idBuscar);
+
+        if(usuarioEncontrado != null){
+        System.out.println("usuario  encontrado ");
+
+        // usuarios encontrados
+        System.out.println(usuarioEncontrado.getNombre() + " - " + usuarioEncontrado.getEmail());
+     
+        // para actualizar
+        System.out.println("desea actualizar usuario 1. si 2. no");
+        int opcionActualizar =  leer.nextInt();
+        leer.nextLine();
+
+        if(opcionActualizar == 1){
+        System.out.println("Por favor ingrese el nombre nuevo");
+        String nuevoNombre = leer.nextLine();
+        System.out.println("ingrese el nuevo mail");
+        String nuevoEmail = leer.nextLine();
 
 
-
-}
+        usuarioEncontrado.setNombre(nuevoNombre);
+        usuarioEncontrado.setEmail(nuevoEmail);
+        System.out.println("se actualizo el usuario");
+        }
+        }else{
+                        System.out.println(" no se encontro usuario");
+                }
         break;
-    default:
-       
-}
 
+        case 4: 
+                System.out.println("Ingrese el ID del usuario a eliminar:");
+        int idEliminar = leer.nextInt();
+        leer.nextLine();
 
-
-
-
-
-
-
-
-
-
-
-
+        miTienda.eliminarUsuario(idEliminar);
         break;
-}
+        default:
+                System.out.println("opcion invalida");}
+}}}}}
 
-}
-// interfazde producto
-miTienda.guardar(productoTienda);
-miTienda.buscar(idProductoTienda);
-miTienda.eliminar(idProductoTienda);
+    
 
 
 
 
-// Mostrar lo que se guardó
-System.out.println("usuarios:");
-miTienda.listarUsuarios(); 
 
-System.out.println("productos");
-miTienda.mostrarProductos();
-    }
+
+
+        
+
 
 

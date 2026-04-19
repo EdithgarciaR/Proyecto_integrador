@@ -49,7 +49,30 @@ public class Tienda implements Inter_Productos {
         return null;
     }
 
-    // crud productos
+public void actualizarUsuario(int id, String nuevoNombre, String nuevoEmail) {
+    Usuario u = buscarUsuarioPorId(id);
+    if (u != null) {
+        u.setNombre(nuevoNombre);
+        u.setEmail(nuevoEmail);
+        System.out.println("Usuario actualizado correctamente.");
+    }
+}
+public void eliminarUsuario(int id) {
+    Usuario usuarioEliminar = null;
+
+    for (Usuario u : listaUsuarios) {
+        if (u.getIdUsuario() == id) {
+            usuarioEliminar = u;
+            break;
+        }
+    }
+
+    if (usuarioEliminar != null) {
+        listaUsuarios.remove(usuarioEliminar);
+        System.out.println("Usuario eliminado correctamente.");
+    } else {
+        System.out.println("No se encontró usuario con ese ID.");}}
+            // crud productos
     public void agregarProducto(Producto producto) {
         for (int i = 0; i < listaProductos.size(); i++) {
             Producto p = listaProductos.get(i);
