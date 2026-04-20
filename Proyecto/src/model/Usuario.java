@@ -11,18 +11,16 @@ public abstract class Usuario {
 
 
     public  Usuario (){}
-
-    public Usuario (int IdUsuario, String Nombre, String Apellido, String Email,
-    int Telefono, String Direccion, String Contrasena)
-    {
-    this. IdUsuario = IdUsuario;
-    this. Nombre = Nombre;
-    this. Apellido = Apellido;
-    this. Email = Email;
-    this.  Telefono = Telefono;
-    this. Direccion = Direccion;
-    this. Contrasena = Contrasena;
-    }
+public Usuario (int IdUsuario, String Nombre, String Apellido, String Email,
+int Telefono, String Direccion, String Contrasena) {
+    setIdUsuario(IdUsuario);
+    setNombre(Nombre);
+    setApellido(Apellido);
+    setEmail(Email);        // ← ahora sí valida el @
+    setTelefono(Telefono);
+    setDireccion(Direccion);
+    setContrasena(Contrasena);
+}
 
 
   // para el polimorfismo y mostrar el abstract

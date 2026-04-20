@@ -10,8 +10,9 @@ public class Cliente extends Usuario {
         this.tipoCliente = tipoCliente;}
 
     public Cliente(int IdUsuario, String Nombre, String Apellido, String Email,
-    int Telefono, String Direccion, String Contrasena){
-    super(IdUsuario, Nombre,Apellido,Email, Telefono,Direccion,Contrasena);}
+    int Telefono, String Direccion, String Contrasena, String tipoCliente){
+    super(IdUsuario, Nombre,Apellido,Email, Telefono,Direccion,Contrasena);
+    this.tipoCliente = tipoCliente; }
 
         //metodo
     public void comprar(){
