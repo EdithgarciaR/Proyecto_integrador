@@ -6,8 +6,6 @@ public class Tienda implements Inter_Productos {
     private ArrayList<Producto> listaProductos = new ArrayList<>();
 
     public Tienda() {
-        listaUsuarios = new ArrayList<>();
-        listaProductos = new ArrayList<>();
     }
 
     // crud
@@ -72,7 +70,11 @@ public void eliminarUsuario(int id) {
         System.out.println("Usuario eliminado correctamente.");
     } else {
         System.out.println("No se encontró usuario con ese ID.");}}
-            // crud productos
+          
+        
+        
+        // crud productos
+        //agregar producto
     public void agregarProducto(Producto producto) {
         for (int i = 0; i < listaProductos.size(); i++) {
             Producto p = listaProductos.get(i);
@@ -84,7 +86,7 @@ public void eliminarUsuario(int id) {
         listaProductos.add(producto);
         System.out.println("Producto '" + producto.getNombre() + "' agregado.");
     }
-
+    //mostrar producto 
     public void mostrarProductos() {
         System.out.println("\nInventario de productos:");
         if (listaProductos.isEmpty()) {
@@ -99,6 +101,27 @@ public void eliminarUsuario(int id) {
         }
     }
 
+    //actualizarr producto
+    public void actualizarProducto(int id, String nuevoNombre){
+        Producto producto = buscarProductoPorId(id);
+
+        if (producto != null) {
+            producto.setNombre(nuevoNombre);
+            System.out.println("Producto actualizado correctamente");
+        } else {
+            System.out.println("Producto no encontrado");
+        }
+    }
+    public Producto buscarProductoPorId(int id) {
+    for (Producto p : listaProductos) {
+        if (p.getIdProducto() == id) {
+            return p;
+        }
+    }
+    return null;
+}
+
+    // eliminar producto
     public void eliminarProducto(int id) {
         Producto productoEliminar = null;
         for (int i = 0; i < listaProductos.size(); i++) {
@@ -121,15 +144,10 @@ public void eliminarUsuario(int id) {
         public void  guardar(Producto producto){
             agregarProducto(producto);
         }
-
         @Override
         public Producto buscar(int id){
-        for (Producto p : listaProductos){
-            if(p.getIdProducto() == id) return p;}
-                System.out.println("no se encontro ningun producto");
-                return null;
-            }
-        
+            return buscarProductoPorId(id);
+        }
         @Override
         public void eliminar(int id) {
             eliminarProducto(id);}
